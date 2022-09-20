@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import projects, project, createProject, updateProject, deleteProject, projects_by_tag
 
+
 urlpatterns = [
     path('', projects, name='projects'),
     path('project-object/<str:pk>/', project, name='project'),
