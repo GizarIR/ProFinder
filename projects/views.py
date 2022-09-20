@@ -10,7 +10,7 @@ def projects(request):
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
-    projectObj = Project.objects.get(id=pk)
+    projectObj = Project.objects.get(slug=pk)
     tags = projectObj.tags.all()
     return render(request, 'projects/single-project.html', {'project': projectObj})
 

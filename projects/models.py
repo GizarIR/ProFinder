@@ -1,7 +1,10 @@
 from django.db import models
 import uuid
+from users.models import Profile
 
+# from django.apps import apps
 
+# Profile = apps.get_model('users', 'Profile')
 class Tag(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField()
@@ -24,6 +27,7 @@ class Project(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     image = models.ImageField(null=True, blank=True, default="project_images/default.jpg", upload_to='project_images')
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
