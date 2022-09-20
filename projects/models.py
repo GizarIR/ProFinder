@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from users.models import Profile
+from django.utils.text import slugify
 
 # from django.apps import apps
 
@@ -13,6 +14,11 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 
 class Project(models.Model):
